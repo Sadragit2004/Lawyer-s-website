@@ -1,0 +1,125 @@
+ <header class="header rtl text-right">
+
+            <div class="sticky-content-wrapper">
+                <div class="header-middle sticky-header fix-top sticky-content">
+                    <div class="container">
+                        <div class="header-right">
+                            <a href="#" class="mobile-menu-toggle ml-0">
+                                <i class="fa-solid fa-bars-staggered"></i>
+                            </a>
+                            <a href="{% url 'main:index' %}" class="logo">
+                                <picture>
+                                    <source srcset="/media/images/logo-white.webp" type="image/webp">
+                                    <img loading="lazy" decoding="async" width="154" height="43" src="/media/images/logo-white.png" alt="لوگو قالب وکیل الرعایا">
+                                </picture>
+                            </a>
+                            <nav class="main-nav">
+                                <ul class="menu">
+                                    <li class="active">
+                                        <a href="/">صفحه اصلی</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'blog:list' %}">مقالات و اخبار</a>
+
+                                    </li>
+
+                                    <li>
+                                        <a href="{% url 'main:about' %}">درباره ما</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'main:call' %}">تماس با ما</a>
+
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-left">
+                            <a href="tel:#" class="icon-box icon-box-side">
+                                <div class="icon-box-icon ml-0 ml-lg-2">
+                                    <i class="fa-regular fa-phone"></i>
+                                </div>
+                                <div class="icon-box-content d-xs-show">
+                                    <span class="icon-box-title text-white">تلفن پاسخگو:</span>
+                                    <p class="text-white"> 0914-318-1262 </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+        <div class="sticky-footer sticky-content fix-bottom rtl text-right">
+            <a href="/" class="sticky-link">
+                <i class="fa-light fa-home"></i>
+                <span>صفحه نخست</span>
+            </a>
+            <a href="/call" class="sticky-link">
+                <i class="fa-light fa-sliders-up"></i>
+                <span>تماس با ما</span>
+            </a>
+            <a href="{% url 'blog:list' %}" class="sticky-link">
+                <i class="fa-light fa-chart-line"></i>
+                <span>لیست مقالات</span>
+            </a>
+            <a href="/about" class="sticky-link">
+                <i class="fa-light fa-user"></i>
+                <span>درباره ما </span>
+            </a>
+
+        </div>
+        <a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></a>
+        <div class="mobile-menu-wrapper">
+            <div class="mobile-menu-overlay">
+            </div>
+            <a class="mobile-menu-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+            <div class="mobile-menu-container scrollable">
+                <form action="#" class="input-wrapper">
+                    <input type="text" class="form-control" name="search" autocomplete="off"
+                           placeholder="جستجو ..." required />
+                    <button class="btn btn-search" type="submit">
+                        <i class="fa-light fa-search"></i>
+                    </button>
+                </form>
+                <ul class="mobile-menu mmenu-anim">
+                    <li class="active">
+                        <a href="/">0914-866-0463</a>
+
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+         <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                پشتیبانی آنلاین
+            </div>
+            <div class="chat-box" id="chat-box">
+                <div>سلام، چطور می‌توانم کمک کنم؟</div>
+            </div>
+            <div class="chat-input-container">
+                <textarea class="chat-input" id="chat-input" placeholder="پیام خود را وارد کنید..."></textarea>
+                <button class="send-button" onclick="sendMessage()"><i class="fa-sharp fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+         <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                پشتیبانی آنلاین
+            </div>
+            <div class="chat-box" id="chat-box">
+                <div>سلام، چطور می‌توانم کمک کنم؟</div>
+            </div>
+            <div class="chat-input-container">
+                <textarea class="chat-input" id="chat-input" placeholder="پیام خود را وارد کنید..."></textarea>
+                <button class="send-button" onclick="sendMessage()"><i class="fa-sharp fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>

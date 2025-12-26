@@ -1,0 +1,90 @@
+
+<main class="main rtl text-right">
+    <div class="page-header section-main">
+        <div class="container">
+            <p class="page-title">مقالات حقوقی</p>
+            <ul class="breadcrumb">
+                <li><a href="{% url 'main:index' %}"><i class="fa-light fa-home"></i> خانه</a></li>
+                <li class="delimiter">⟩</li>
+                <li><a href="#">مقالات</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- مقالات پربازدید -->
+    <section class="section-main rtl">
+        <div class="container">
+            <div class="section-title-main">
+                <h2 class="section-subtitle p-relative">مقالات پر بازدید رضا کریمی</h2>
+                <div class="section-title-wrap">
+                    <h5 class="section-title">مقالات <b>پربازدید</b> حقوقی</h5>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-sm-2 cols-1"
+                 data-owl-options="{
+                      'rtl':true,
+                      'items': 4,
+                      'margin': 20,
+                      'nav': false,
+                      'dots': true,
+                      'loop': true,
+                      'autoplay': true,
+                      'autoplayTimeout': 3000,
+                      'responsive': {
+                        '0': {'items': 1},
+                        '576': {'items': 2},
+                        '768': {'items': 3},
+                        '1200': {'items': 4, 'dots': false}
+                    }
+                }">
+                {% for post in top_blogs %}
+                <div class="post post-sm overlay-dark">
+                    <figure class="post-media">
+                        <a href="{{ post.get_absolute_url }}">
+                            {% if post.cover_image %}
+                            <img src="{{ post.cover_image.url }}" width="380" height="200" loading="lazy" decoding="async" alt="{{ post.title }}" />
+                            {% else %}
+                            <img src=" " width="380" height="200" loading="lazy" decoding="async" alt="{{ post.title }}" />
+                            {% endif %}
+                        </a>
+                    </figure>
+                    <div class="post-details rtl">
+                        <div class="post-meta">
+                            <i class="fa-solid fa-user"></i>
+                            <a href="#" class="post-author">
+                                {% if post.author %}{{ post.author.display_name }}{% else %}نویسنده ناشناس{% endif %}
+                            </a>
+                            <span class="divider"></span>
+                            <i class="fa-solid fa-calendar-alt"></i>
+                            <a href="#" class="post-date">
+                                {% if jalali_date %}
+                                    {{ jalali_date.day }}   {{ jalali_date.year }}
+                                {% else %}
+                                    {{ post.created_at|date:"Y/m/d" }}
+                                {% endif %}
+                            </a>
+                            <span class="divider"></span>
+                            <i class="fa-solid fa-eye"></i>
+                            <span>{{ post.views }} بازدید</span>
+                        </div>
+                        <h3 class="post-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="post-content">
+                            {{ post.excerpt|truncatechars:120|default:"توضیحاتی برای این مقاله موجود نیست." }}
+                        </p>
+                        <a href="{{ post.get_absolute_url }}" class="btn btn-link text-gold">
+                            بیشتر<span class="mr-1">»</span>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-center">مقاله‌ای یافت نشد.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    

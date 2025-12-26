@@ -1,0 +1,611 @@
+{% extends "main_template.html" %}
+{% load static %}
+
+
+{% block meta1 %}
+
+
+<!-- متا تگ‌های اصلی -->
+<title>{{ post.title }} - مقالات حقوقی وکیل الرعایا</title>
+<meta name="description" content="{{ post.excerpt|default:post.content|striptags|truncatechars:160 }}">
+<meta name="author" content="{% if post.author %}{{ post.author.display_name }}{% else %}وکیل الرعایا{% endif %}">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="{% for tag in post.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.excerpt|default:post.content|striptags|truncatechars:160 }}">
+<meta property="og:image" content="{% if post.cover_image %}{{ post.cover_image.url }}{% else %}https://example.com/static/images/blog/default-thumb.jpg{% endif %}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:site_name" content="وکیل الرعایا">
+<meta property="og:locale" content="fa_IR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@vakil_alraaya">
+<meta name="twitter:creator" content="@vakil_alraaya">
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:description" content="{{ post.excerpt|default:post.content|striptags|truncatechars:160 }}">
+<meta name="twitter:image" content="{% if post.cover_image %}{{ post.cover_image.url }}{% else %}https://example.com/static/images/blog/default-thumb.jpg{% endif %}">
+
+<!-- سایر -->
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "{{ post.title|escapejs }}",
+      "description": "{{ post.excerpt|default:post.content|striptags|truncatechars:200|escapejs }}",
+      "image": "{% if post.cover_image %}{{ post.cover_image.url }}{% else %}https://example.com/static/images/blog/default-thumb.jpg{% endif %}",
+      "datePublished": "{{ post.created_at|date:'c' }}",
+      "dateModified": "{% if post.updated_at %}{{ post.updated_at|date:'c' }}{% else %}{{ post.created_at|date:'c' }}{% endif %}",
+      "author": {
+        "@type": "Person",
+        "name": "{% if post.author %}{{ post.author.display_name }}{% else %}نویسنده ناشناس{% endif %}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "دفتر وکالت وکیل الرعایا",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://example.com/media/images/logo-footer.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ request.build_absolute_uri }}"
+      },
+      "articleSection": "{% if post.category %}{{ post.category.name }}{% else %}مقالات حقوقی{% endif %}",
+      "keywords": "{% for tag in post.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}",
+      "inLanguage": "fa-IR",
+      "wordCount": "{{ post.content|wordcount }}",
+      "timeRequired": "PT{{ post.reading_time|default:5 }}M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "خانه",
+          "item": "https://example.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "مقالات",
+          "item": "https://example.com/blog/list/"
+        }
+        {% if post.category %},
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ post.category.name }}",
+          "item": "https://example.com/blog/category/{{ post.category.slug }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "{{ post.title|escapejs|truncatechars:30 }}",
+          "item": "{{ request.build_absolute_uri }}"
+        }
+        {% else %},
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ post.title|escapejs|truncatechars:30 }}",
+          "item": "{{ request.build_absolute_uri }}"
+        }
+        {% endif %}
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "url": "{{ request.build_absolute_uri }}",
+      "name": "{{ post.title|escapejs }} - مقالات حقوقی",
+      "description": "{{ post.excerpt|default:post.content|striptags|truncatechars:200|escapejs }}",
+      "inLanguage": "fa-IR",
+      "datePublished": "{{ post.created_at|date:'c' }}",
+      "dateModified": "{% if post.updated_at %}{{ post.updated_at|date:'c' }}{% else %}{{ post.created_at|date:'c' }}{% endif %}"
+    }
+    {% if related_posts and related_posts.count > 0 %},
+    {
+      "@type": "ItemList",
+      "itemListElement": [
+        {% for related in related_posts|slice:":5" %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.counter }},
+          "url": "https://example.com{{ related.get_absolute_url }}"
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      ],
+      "numberOfItems": {{ related_posts|slice:':5'|length }},
+      "name": "مقالات مرتبط"
+    }
+    {% endif %}
+  ]
+}
+</script>
+
+<!-- Schema برای سازمان اصلی -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "دفتر وکالت وکیل الرعایا",
+  "url": "https://example.com/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://example.com/media/images/logo-footer.png",
+    "width": "154",
+    "height": "43"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+989148660463",
+    "contactType": "پشتیبانی مشتریان",
+    "availableLanguage": ["Persian"]
+  },
+  "sameAs": [
+    "https://t.me/example",
+    "https://wa.me/989148660463",
+    "https://instagram.com/example",
+    "https://facebook.com/example",
+    "https://rubika.ir/example"
+  ]
+}
+</script>
+
+<!-- FAQ Schema (اگر مقاله شامل سوالات باشد) -->
+{% if "سوال" in post.title or "پاسخ" in post.title or "سوالات متداول" in post.title or "FAQ" in post.title %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{ post.title|escapejs }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ post.content|striptags|truncatechars:500|escapejs }}"
+      }
+    }
+  ]
+}
+</script>
+{% endif %}
+
+{% endblock meta1 %}
+
+{% block content %}
+<main class="main rtl text-right">
+    <div class="page-header section-main">
+        <div class="container">
+            <h1 class="page-title">{{ post.title }}</h1>
+            <ul class="breadcrumb">
+                <li><a href="{% url 'main:index' %}"><i class="fa-light fa-home"></i> خانه</a></li>
+                <li class="delimiter">⟩</li>
+                <li><a href="{% url 'blog:main' %}">مقالات</a></li>
+                {% if post.category %}
+                <li class="delimiter">⟩</li>
+                <li><a href="{% url 'blog:category' post.category.slug %}">{{ post.category.name }}</a></li>
+                {% endif %}
+                <li class="delimiter">⟩</li>
+                <li><a href="#">{{ post.title|truncatechars:30 }}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="page-content with-sidebar section-main">
+            <div class="container">
+                <div class="row gutter-lg">
+                    <!-- محتوای اصلی -->
+                    <div class="col-lg-9">
+                        <section class="section-main">
+                            <article class="post-single">
+                                <!-- تصویر اصلی -->
+                                {% if post.cover_image %}
+                                <figure class="post-media">
+                                    <img src="{{ post.cover_image.url }}" width="880" height="450"
+                                         loading="lazy" decoding="async" alt="{{ post.title }}" />
+                                </figure>
+                                {% endif %}
+
+                                <!-- تاریخ -->
+                                <div class="date-main">
+                                    <span class="date-main-date">{{ jalali_day }}</span>
+                                    <span class="date-main-month">{{ jalali_month }}</span>
+                                </div>
+
+                                <!-- اطلاعات مقاله -->
+                                <div class="post-details introduction rtl">
+                                    <!-- دسته‌بندی -->
+                                    {% if post.category %}
+                                    <div class="post-category mb-3">
+                                        <a href="{% url 'blog:category' post.category.slug %}"
+                                           class="badge badge-primary">
+                                            {{ post.category.name }}
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                    <h1 class="post-title mb-3">{{ post.title }}</h1>
+
+                                    <div class="post-meta post-meta-border mb-4">
+                                        <i class="fa-solid fa-user"></i>
+                                        <a href="#" class="post-author">
+                                            {% if post.author %}{{ post.author.display_name }}{% else %}نویسنده ناشناس{% endif %}
+                                        </a>
+                                        <span class="divider"></span>
+                                        <i class="fa-solid fa-calendar-alt"></i>
+                                        <span class="post-date">
+                                            {{ jalali_day }} {{ jalali_month }} {{ jalali_year }}
+                                        </span>
+                                        <span class="divider"></span>
+                                        <i class="fa-solid fa-eye"></i>
+                                        <span>{{ post.views }} بازدید</span>
+                                        {% if post.reading_time %}
+                                        <span class="divider"></span>
+                                        <i class="fa-solid fa-clock"></i>
+                                        <span>{{ post.reading_time }} دقیقه مطالعه</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- خلاصه -->
+                                    {% if post.excerpt %}
+                                    <div class="post-excerpt alert alert-info mb-4">
+                                        <h5>خلاصه مقاله:</h5>
+                                        <p>{{ post.excerpt }}</p>
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- محتوای اصلی -->
+                                    <div class="post-content mb-5">
+                                        {{ post.content|safe }}
+                                    </div>
+
+                                    <!-- محتوای تکمیلی (CKEditor) -->
+                                    {% if post.description %}
+                                    <div class="post-description mt-5">
+                                        {{ post.description|safe }}
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- تگ‌ها -->
+                                    {% if post.tags.all %}
+                                    <div class="post-tags mt-4">
+                                        <strong>برچسب‌ها:</strong>
+                                        {% for tag in post.tags.all %}
+                                        <a href="{% url 'blog:tag' tag.slug %}" class="tag">{{ tag.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- اشتراک گذاری -->
+                                    <div class="post-share mt-5">
+                                        <strong>اشتراک گذاری:</strong>
+                                        <div class="share-buttons mt-2">
+                                            <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ post.title }}"
+                                               target="_blank" class="btn btn-telegram">
+                                                <i class="fab fa-telegram"></i> تلگرام
+                                            </a>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}"
+                                               target="_blank" class="btn btn-twitter">
+                                                <i class="fab fa-twitter"></i> توییتر
+                                            </a>
+                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ post.title }}"
+                                               target="_blank" class="btn btn-linkedin">
+                                                <i class="fab fa-linkedin"></i> لینکدین
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <!-- مقالات مرتبط -->
+                        {% if related_posts %}
+                        <div class="related-posts section-main mt-5">
+                            <div class="section-title-main">
+                                <h3 class="section-subtitle p-relative">مقالات مرتبط</h3>
+                                <div class="section-title-wrap">
+                                    <h5 class="section-title">مقالات <b>مرتبط</b></h5>
+                                </div>
+                            </div>
+                            <div class="owl-carousel owl-theme row cols-lg-3 cols-sm-2"
+                                 data-owl-options="{
+                                     'rtl':true,
+                                    'items': 1,
+                                    'margin': 20,
+                                    'loop': true,
+                                    'autoplay': true,
+                                    'autoplayTimeout': 3000,
+                                    'responsive': {
+                                        '576': {'items': 2},
+                                        '768': {'items': 3}
+                                    }
+                                }">
+                                {% for related in related_posts %}
+                                <div class="post">
+                                    <figure class="post-media">
+                                        <a href="{{ related.get_absolute_url }}">
+                                            {% if related.cover_image %}
+                                            <img src="{{ related.cover_image.url }}" width="380" height="250"
+                                                 loading="lazy" decoding="async" alt="{{ related.title }}" />
+                                            {% else %}
+                                            <img src="{% static 'images/blog/default-cover.jpg' %}" width="380" height="250"
+                                                 loading="lazy" decoding="async" alt="{{ related.title }}" />
+                                            {% endif %}
+                                        </a>
+                                        <div class="post-calendar">
+                                            <span class="post-day">
+                                                {% with jalali_date=related.created_at|date:"d" %}
+                                                    {{ jalali_date }}
+                                                {% endwith %}
+                                            </span>
+                                            <span class="post-month">
+                                                {% with jalali_month=related.created_at|date:"m" %}
+                                                    {% if jalali_month == "01" %}فروردین
+                                                    {% elif jalali_month == "02" %}اردیبهشت
+                                                    {% elif jalali_month == "03" %}خرداد
+                                                    {% elif jalali_month == "04" %}تیر
+                                                    {% elif jalali_month == "05" %}مرداد
+                                                    {% elif jalali_month == "06" %}شهریور
+                                                    {% elif jalali_month == "07" %}مهر
+                                                    {% elif jalali_month == "08" %}آبان
+                                                    {% elif jalali_month == "09" %}آذر
+                                                    {% elif jalali_month == "10" %}دی
+                                                    {% elif jalali_month == "11" %}بهمن
+                                                    {% else %}اسفند{% endif %}
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </figure>
+                                    <div class="post-details rtl">
+                                        <h5 class="post-title">
+                                            <a href="{{ related.get_absolute_url }}">
+                                                {{ related.title|truncatechars:60 }}
+                                            </a>
+                                        </h5>
+                                        <p class="post-content">
+                                            {{ related.excerpt|truncatechars:100|default:related.content|striptags|truncatechars:100 }}
+                                        </p>
+                                        <a href="{{ related.get_absolute_url }}"
+                                           class="btn btn-link btn-underline btn-primary">
+                                            بیشتر<span class="mr-1">»</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- سایدبار -->
+                    <aside class="col-lg-3 sidebar sidebar-fixed sticky-sidebar-wrapper rtl bg-gray">
+                        <div class="sidebar-overlay"></div>
+                        <a class="sidebar-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+                        <a href="#" class="sidebar-toggle"><i class="fas fa-chevron-right"></i></a>
+
+                        <div class="sidebar-content">
+                            <div class="sticky-sidebar" data-sticky-options="{'top':0, 'bottom': 70}">
+
+                                <!-- تبلیغ مشاوره -->
+                                <div class="widget widget-collapsible widget-advertisement">
+                                    <div class="widget-body">
+                                        <img src="{% static 'images/bg/widget-bg.jpg' %}" />
+                                        <div class="advertisement-info">
+                                            <h3>مشاوره رایگان</h3>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- دسته‌بندی‌ها -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">دسته‌بندی مقالات</h3>
+                                    <ul class="widget-body filter-items search-ul">
+                                        {% for category in categories %}
+                                        <li>
+                                            <a href="{% url 'blog:category' category.slug %}"
+                                               {% if post.category and post.category.id == category.id %}class="active"{% endif %}>
+                                                {{ category.name }}
+                                                <span class="count">({{ category.posts.count }})</span>
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                                <!-- مقالات پربازدید -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">مقالات پربازدید</h3>
+                                    <div class="widget-body">
+                                        <div class="post-col">
+                                            {% for popular in popular_sidebar_posts %}
+                                            <div class="post post-list-sm">
+                                                <figure class="post-media">
+                                                    <a href="{{ popular.get_absolute_url }}">
+                                                        {% if popular.cover_image %}
+                                                        <img src="{{ popular.cover_image.url }}" width="90" height="90"
+                                                             loading="lazy" decoding="async" alt="{{ popular.title }}" />
+                                                        {% else %}
+                                                        <img src="{% static 'images/blog/default-thumb.jpg' %}" width="90" height="90"
+                                                             loading="lazy" decoding="async" alt="{{ popular.title }}" />
+                                                        {% endif %}
+                                                    </a>
+                                                </figure>
+                                                <div class="post-details rtl">
+                                                    <div class="post-meta">
+                                                        <a href="#" class="post-date">
+                                                            {{ popular.created_at|date:"Y/m/d" }}
+                                                        </a>
+                                                    </div>
+                                                    <h5 class="post-title">
+                                                        <a href="{{ popular.get_absolute_url }}">
+                                                            {{ popular.title|truncatechars:40 }}
+                                                        </a>
+                                                    </h5>
+                                                    <div class="post-stats">
+                                                        <i class="fa-solid fa-eye"></i> {{ popular.views }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- برچسب‌ها -->
+                                <div class="widget widget-posts widget-collapsible">
+                                    <h3 class="widget-title">برچسب‌ها</h3>
+                                    <div class="widget-body">
+                                        {% for tag in tags %}
+                                        <a href="{% url 'blog:tag' tag.slug %}"
+                                           {% if tag in post.tags.all %}class="tag active"{% else %}class="tag"{% endif %}>
+                                            {{ tag.name }}
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<style>
+    .post-single {
+        position: relative;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .date-main {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #007bff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        border-radius: 5px;
+        z-index: 2;
+    }
+    .date-main-date {
+        display: block;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .date-main-month {
+        display: block;
+        font-size: 16px;
+    }
+    .post-title {
+        color: #333;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+    .post-meta {
+        color: #666;
+        font-size: 14px;
+    }
+    .post-meta .divider {
+        margin: 0 10px;
+        color: #ddd;
+    }
+    .post-content {
+        line-height: 1.8;
+        color: #444;
+        font-size: 16px;
+    }
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .post-content h1,
+    .post-content h2,
+    .post-content h3,
+    .post-content h4,
+    .post-content h5,
+    .post-content h6 {
+        margin-top: 30px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    .post-tags {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .share-buttons .btn {
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    .btn-telegram { background: #0088cc; color: white; }
+    .btn-twitter { background: #1da1f2; color: white; }
+    .btn-linkedin { background: #0077b5; color: white; }
+    .badge-primary {
+        background: #007bff;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .badge-primary:hover {
+        background: #0056b3;
+        color: white;
+        text-decoration: none;
+    }
+    .post-excerpt {
+        background: #f8f9fa;
+        border-right: 4px solid #007bff;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .tag.active {
+        background: #007bff;
+        color: white;
+    }
+</style>
+
+<script>
+    // فعال‌سازی کاروسل
+    $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            responsive: {
+                0: { items: 1 },
+                576: { items: 2 },
+                768: { items: 3 }
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+

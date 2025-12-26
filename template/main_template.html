@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    {% block meta1 %}
+
+    {% endblock meta1 %}
+
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/awesome/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/vazir/font-vazir-custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugin-js/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main-min.css' %}">
+
+</head>
+<body class="" id="">
+ <div class="page-wrapper">
+    {% include "partials/header.html" %}
+
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+
+    {% include "partials/footer.html" %}
+
+
+
+
+    {% include "partials/script.html" %}
+</div>
+</body>
+</html>

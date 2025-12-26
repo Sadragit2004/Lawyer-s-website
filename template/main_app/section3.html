@@ -1,0 +1,161 @@
+<section class="newsletter rtl text-right section-main">
+    <div class="container banner banner-newsletter">
+        <div class="banner-content row gutter-no align-items-center">
+            <div class="col-lg-8 col-md-10 col-xs-12 counseling-main counter-main text-center">
+                <h2 class="font-weight-normal">ثبت مشاوره</h2>
+                <p class="title-inverse-custom-cross justify-content-center title-inverse-line title-inverse-right-line">
+                    <i class="fa-thin fa-scale-balanced"></i>
+                </p>
+                <div class="col-lg-9 col-md-10 col-xs-12 margin-auto mb-6">
+                    <p>
+                        برای مشاوره حقوقی تلفنی با بهترین وکیل پایه یک دادگستری، شماره موبایل خود را قرار دهید تا در اسرع وقت با شما تماس گرفته شود.
+                    </p>
+                </div>
+                <div class="col-lg-9 col-md-10 col-xs-12 margin-auto">
+                    <form id="consultationForm" method="post">
+                        {% csrf_token %}
+                        <div class="input-wrapper input-wrapper-inline ml-lg-auto mr-lg-auto">
+                            <input type="tel" class="form-control form-solid text-left"
+                                   name="mobile" id="mobile" placeholder="شماره موبایل"
+                                   pattern="[0-9]{11}" required>
+                            <button class="btn btn-gold btn-newsletter mr-4" type="submit" id="submitBtn">
+                                ثبت
+                            </button>
+                        </div>
+                    </form>
+                    <div id="messageContainer" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.notification {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-weight: 500;
+    text-align: center;
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.success {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border-right: 4px solid #2E7D32;
+}
+
+.error {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: white;
+    border-right: 4px solid #b71c1c;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.btn-loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
+
+<script>
+document.getElementById('consultationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const messageContainer = document.getElementById('messageContainer');
+    const formData = new FormData(this);
+
+    // نمایش حالت لودینگ
+    submitBtn.classList.add('btn-loading');
+    submitBtn.disabled = true;
+
+    // پاک کردن پیام قبلی
+    messageContainer.innerHTML = '';
+
+    fetch('{% url "consultation_submit" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // نمایش پیام موفقیت
+            showMessage(data.message, 'success');
+            // ریست کردن فرم
+            document.getElementById('consultationForm').reset();
+        } else {
+            // نمایش پیام خطا
+            showMessage(data.message, 'error');
+        }
+    })
+    .catch(error => {
+        showMessage('❌ خطا در ارتباط با سرور', 'error');
+    })
+    .finally(() => {
+        // بازگشت به حالت عادی
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+    });
+});
+
+function showMessage(message, type) {
+    const messageContainer = document.getElementById('messageContainer');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `notification ${type}`;
+    messageDiv.textContent = message;
+    messageContainer.appendChild(messageDiv);
+
+    // حذف خودکار پیام بعد از 3 ثانیه
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.remove();
+        }
+    }, 3000);
+}
+</script>

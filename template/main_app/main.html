@@ -1,0 +1,1192 @@
+{% extends "main_template.html" %}
+{% load static %}
+{% load render_partial %}
+
+
+{% block meta1 %}
+
+
+<!-- Meta Tags Essential -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="description" content="دفتر وکالت رضا کریمی - وکیل پایه یک دادگستری. مشاوره حقوقی تخصصی در دعاوی کیفری، ملکی، خانوادگی، بانکی و ثبتی. همراه شما در مسیر عدالت.">
+<meta name="author" content="رضا کریمی">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Persian">
+<meta name="revisit-after" content="7 days">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:title" content="وکیل الرعایا - دفتر وکالت رضا کریمی | وکیل پایه یک دادگستری">
+<meta property="og:description" content="مشاوره حقوقی تخصصی در کلیه دعاوی کیفری، ملکی، خانوادگی، بانکی و ثبتی. همراه شما در مسیر عدالت.">
+<meta property="og:image" content="https://example.com/media/images/logo-white.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="لوگو دفتر وکالت وکیل الرعایا">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="وکیل الرعایا">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://example.com/">
+<meta property="twitter:title" content="وکیل الرعایا - دفتر وکالت رضا کریمی | وکیل پایه یک دادگستری">
+<meta property="twitter:description" content="مشاوره حقوقی تخصصی در کلیه دعاوی کیفری، ملکی، خانوادگی، بانکی و ثبتی. همراه شما در مسیر عدالت.">
+<meta property="twitter:image" content="https://example.com/media/images/logo-white.png">
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/static/images/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/images/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/images/icons/favicon-16x16.png">
+<link rel="manifest" href="/static/site.webmanifest">
+<meta name="theme-color" content="#1a1a2e">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://example.com/">
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LegalService",
+      "@id": "https://example.com/#legalservice",
+      "name": "دفتر وکالت وکیل الرعایا",
+      "description": "مشاوره حقوقی دقیق برای رفع مشکلات قانونی شما - وکیل متخصص؛ همراه شما در مسیر عدالت",
+      "url": "https://example.com/",
+      "telephone": "+989148660463",
+      "email": "support@example.com",
+      "image": "https://example.com/media/images/logo-white.png",
+      "logo": "https://example.com/media/images/logo-footer.png",
+      "priceRange": "قیمت بر اساس سختی و وسعت پرونده تعیین می‌گردد",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "خیابان اذربایجان، چهاراه بهار",
+        "addressLocality": "تبریز",
+        "addressRegion": "آذربایجان شرقی",
+        "addressCountry": "IR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.0882239,
+        "longitude": 46.2573787
+      },
+      "openingHours": [
+        "Mo-Fr 09:00-17:00",
+        "Sa 09:00-13:00"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "خدمات حقوقی",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی کیفری",
+              "description": "مواد مخدر، چک، سرقت، تصادف"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی ملکی",
+              "description": "اجاره‌نامه‌ها، تنظیم سند، تصرف عدوانی"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی خانوادگی",
+              "description": "مهریه، طلاق، حقوق وراثت و انحصار"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی بانکی و مالی",
+              "description": "اختلاس، چک و سفته"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی ثبتی",
+              "description": "امور ثبتی و تنظیم اسناد"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "دعاوی حقوقی",
+              "description": "کلیه امور حقوقی"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://t.me/example",
+        "https://wa.me/989148660463",
+        "https://instagram.com/example",
+        "https://facebook.com/example",
+        "https://rubika.ir/example"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://example.com/#person",
+      "name": "رضا کریمی",
+      "jobTitle": "وکیل پایه یک دادگستری",
+      "description": "وکیل متخصص؛ همراه شما در مسیر عدالت",
+      "image": "https://example.com/media/images/unnamed-removebg-preview.png",
+      "telephone": "+989148660463",
+      "email": "support@example.com",
+      "worksFor": {
+        "@id": "https://example.com/#legalservice"
+      },
+      "knowsAbout": [
+        "حقوق کیفری",
+        "حقوق ملکی",
+        "حقوق خانواده",
+        "حقوق تجاری",
+        "حقوق ثبتی",
+        "حقوق مدنی"
+      ],
+      "hasCredential": "پروانه وکالت پایه یک دادگستری"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://example.com/#organization",
+      "name": "دفتر وکالت وکیل الرعایا",
+      "url": "https://example.com/",
+      "logo": "https://example.com/media/images/logo-footer.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+989148660463",
+        "contactType": "پشتیبانی مشتریان",
+        "availableLanguage": ["Persian"]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "چه نوع دعاوی حقوقی را می‌پذیرید؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ما کلیه دعاوی کیفری (مواد مخدر، چک، سرقت، تصادف)، ملکی (اجاره‌نامه‌ها، تنظیم سند، تصرف عدوانی)، خانوادگی (مهریه، طلاق، حقوق وراثت)، بانکی و مالی (اختلاس، چک و سفته)، ثبتی و حقوقی را می‌پذیریم."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هزینه مشاوره حقوقی چقدر است؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "هزینه وکالت بر اساس سختی و وسعت پرونده تعیین می‌گردد. برای مشاوره اولیه می‌توانید از طریق فرم درخواست مشاوره رایگان اقدام نمایید."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "آیا مشاوره تلفنی ارائه می‌دهید؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "بله، برای مشاوره حقوقی تلفنی با بهترین وکیل پایه یک دادگستری، شماره موبایل خود را در فرم ثبت مشاوره قرار دهید تا در اسرع وقت با شما تماس گرفته شود."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ساعات کاری دفتر چگونه است؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ساعات کاری دفتر ما شنبه تا پنج‌شنبه، از ساعت ۹ صبح تا ۵ عصر می‌باشد. روزهای جمعه و تعطیلات رسمی تعطیل است."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "AggregateRating",
+      "itemReviewed": {
+        "@type": "LegalService",
+        "name": "دفتر وکالت وکیل الرعایا",
+        "image": "https://example.com/media/images/logo-white.png",
+        "telephone": "+989148660463"
+      },
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "12",
+      "reviewCount": "5"
+    },
+    {
+      "@context": "https://schema.org/",
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": "LegalService",
+        "name": "دفتر وکالت وکیل الرعایا"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "محمد رضایی"
+      },
+      "reviewBody": "با تشکر از آقای رضا کریمی بابت پیگیری دقیق پرونده ملکی. ایشون با حوصله و دقت بالا تمام مراحل رو پیگیری کردن و در نهایت نتیجه مطلوبی گرفتیم. واقعاً حرفه‌ای و قابل اعتماد هستند.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "datePublished": "2024-01-15"
+    },
+    {
+      "@context": "https://schema.org/",
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": "LegalService",
+        "name": "دفتر وکالت وکیل الرعایا"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "فاطمه محمدی"
+      },
+      "reviewBody": "قدردانی ویژه از آقای رضا کریمی برای مشاوره حقوقی عالی. توضیحات شفاف و راهنمایی‌های دقیق ایشون کمک بزرگی به حل مشکل تجاری ما کرد.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "datePublished": "2024-02-20"
+    }
+  ]
+}
+</script>
+
+
+{% endblock meta1 %}
+
+{% block content %}
+
+
+<body>
+    <div class="bg-loader">
+        <div class="loader"></div>
+    </div>
+
+
+
+    <div class="page-wrapper">
+
+        <main class="main">
+            <div class="page-content">
+
+                {% render_partial 'main:section1' %}
+
+                <section class="services-main counter-main section-main">
+                    <picture>
+                        <source srcset="/media/images/bg-1.webp" type="image/webp">
+                        <img class="bg1-services" src="/media/images/bg-1.png" loading="lazy" decoding="async" alt="background1" />
+                    </picture>
+                    <picture>
+                        <source srcset="/media/images/bg-2.webp" type="image/webp">
+                        <img class="bg2-services" src="/media/images/bg-2.png" loading="lazy" decoding="async" alt="background2" />
+                    </picture>
+                    <div class="container appear-animate rtl text-right" data-animation-options="{
+                    'delay': '.3s'
+                }">
+                       <div class="mx-auto">
+    <div>
+        <span class="title-inverse title-sm title-center mb-1">خدمات حقوقی</span>
+        <p class="title-inverse-custom-cross justify-content-center title-inverse-line title-inverse-right-line">
+            <i class="fa-thin fa-scale-balanced"></i>
+        </p>
+
+        <!-- اضافه کردن کلاس جدید به row -->
+        <div class="row elements justify-content-center equal-height">
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column">
+                        <i class="fa-light fa-gavel mb-2"></i>
+                        <span class="banner-title text-navy font-weight-bold mb-2">
+                            دعاوی ثبتی
+                        </span>
+                        <p class="banner-subtitle flex-grow-1">
+                            الزام به تفکیک - دعاوی ابطال اجرائیه ثبتی املاک - دعاوی ابطال مراحل ثبتی - دعاوی افراز ملک - اعتراضی به ثبت ملک
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column">
+                        <i class="fa-light fa-scale-balanced mb-2"></i>
+                        <span class="banner-title text-navy font-weight-bold mb-2">
+                            دعاوی ملکی
+                        </span>
+                        <p class="banner-subtitle flex-grow-1">
+                            دعوای خلع ید - مطالبه سرقفلی و حث کسب و پیشه - دعوای اثبات مالکیت - دعوای تصرف عدوانی حقوقی - دعوای ابطال سند و...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column">
+                        <i class="fa-light fa-rings-wedding mb-2"></i>
+                        <span class="banner-title text-navy font-weight-bold mb-2">
+                            دعاوی خانوادگی
+                        </span>
+                        <p class="banner-subtitle flex-grow-1">
+                            نامزدی و خسارت ناشی از برهم زدن ان - نکاح موقت,دائم و اذن در نکاح - اردواج مجدد - اثبات نسب - استرداد جهیزیه - تمکین و نشوز و....
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column">
+                        <i class="fa-light fa-file-signature mb-2"></i>
+                        <span class="banner-title text-navy font-weight-bold mb-2">
+                            دعاوی بانکی
+                        </span>
+                        <p class="banner-subtitle flex-grow-1">
+                            دعوای ابطال اجرائیه ثبتی - دعوای ابطال اجرائیه بانکی - دعوای ابطال شزط ضمن عقد - دعوای الزام فک رهن - دعوال ابطال سند رهنی - دعوای ابطال مزایده - دعوای ابطال سند
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column">
+                        <i class="fa-light fa-file-signature mb-2"></i>
+                        <span class="banner-title text-navy font-weight-bold mb-2">
+                            دعاوی حقوقی
+                        </span>
+                        <p class="banner-subtitle flex-grow-1">
+                            دعاوی مالی موجر و مستاجر تقسیم ترکه الزام به تنظیم سند رسمی - دعاوی غیر مالی اثبات نسب
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="element element-accordian special h-100">
+                    <div class="banner-content rtl h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                        <i class="fa-solid fa-arrow-left mb-3"></i>
+                        <span class="banner-title mb-2">
+                            تمامی خدمات
+                        </span>
+                        <p class="banner-subtitle mb-3">لیست تمامی خدمات ما</p>
+                        <a href="services.html" class="btn btn-gold btn-outline btn-rounded mt-auto">
+                            تمامی خدمات
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    </div>
+                </section>
+
+    <section class="newsletter rtl text-right section-main">
+            <div class="container banner banner-newsletter">
+                <div class="banner-content row gutter-no align-items-center">
+                    <div class="col-lg-8 col-md-10 col-xs-12 counseling-main counter-main text-center">
+                        <h2 class="font-weight-normal mb-3">ثبت مشاوره در رضا کریمی</h2>
+                        <p class="title-inverse-custom-cross justify-content-center title-inverse-line title-inverse-right-line mb-4">
+                            <i class="fa-thin fa-scale-balanced"></i>
+                        </p>
+                        <div class="col-lg-9 col-md-10 col-xs-12 margin-auto mb-5">
+                            <p class="description-text">
+                                برای مشاوره حقوقی تلفنی با بهترین وکیل پایه یک دادگستری، شماره موبایل خود را قرار دهید تا در اسرع وقت با شما تماس گرفته شود.
+                            </p>
+                        </div>
+                        <div class="col-lg-9 col-md-10 col-xs-12 margin-auto">
+                            <form id="consultationForm" method="post">
+                                {% csrf_token %}
+                                <div class="input-wrapper input-wrapper-inline ml-lg-auto mr-lg-auto form-container">
+                                    <input type="tel" class="form-control form-input-large text-left"
+                                        name="mobile" id="mobile" placeholder="شماره موبایل (09xxxxxxxxx)"
+                                        pattern="[0-9]{11}" required>
+                                    <button class="btn btn-gold btn-newsletter btn-large mr-4" type="submit" id="submitBtn">
+                                        <span class="btn-text">ثبت درخواست</span>
+                                        <div class="btn-loading-spinner" style="display: none;">
+                                            <div class="spinner"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="messageContainer" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+
+<style>
+/* استایل‌های اصلی */
+.form-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-input-large {
+    font-size: 18px !important;
+    padding: 18px 20px !important;
+    height: 60px !important;
+    border-radius: 12px !important;
+    border: 2px solid #e0e0e0 !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    min-width: 300px !important;
+}
+
+.form-input-large:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.form-input-large::placeholder {
+    font-size: 16px;
+    color: #999;
+    font-weight: 400;
+}
+
+.btn-large {
+    padding: 18px 35px !important;
+    font-size: 18px !important;
+    height: 60px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    min-width: 150px;
+}
+
+.btn-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+}
+
+.description-text {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+    color: #555 !important;
+    font-weight: 400 !important;
+}
+
+/* استایل‌های نوتیفیکیشن */
+.notification {
+    padding: 20px 25px;
+    border-radius: 15px;
+    margin: 15px 0;
+    font-weight: 600;
+    text-align: center;
+    animation: slideInBounce 0.6s ease-out;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    font-size: 18px;
+    line-height: 1.5;
+    border: none;
+}
+
+.success {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+}
+
+.error {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+}
+
+/* انیمیشن‌های پیشرفته */
+@keyframes slideInBounce {
+    0% {
+        transform: translateY(-30px) scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(10px) scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px) scale(0.95);
+        opacity: 0;
+    }
+}
+
+.notification.hiding {
+    animation: fadeOutUp 0.5s ease-in forwards;
+}
+
+/* استایل اسپینر لودینگ */
+.btn-loading-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 25px;
+    height: 25px;
+    border: 3px solid transparent;
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-loading .btn-loading-spinner {
+    display: block;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-input-large {
+        font-size: 16px !important;
+        padding: 16px !important;
+        height: 55px !important;
+        min-width: 100% !important;
+    }
+
+    .btn-large {
+        width: 100%;
+        font-size: 16px !important;
+        padding: 16px !important;
+        height: 55px !important;
+        margin-right: 0 !important;
+    }
+
+    .notification {
+        font-size: 16px;
+        padding: 18px 20px;
+    }
+
+    .description-text {
+        font-size: 16px !important;
+    }
+}
+
+/* افکت‌های تعاملی */
+.form-input-large:focus {
+    outline: none;
+}
+
+.btn-large:active {
+    transform: translateY(0) !important;
+}
+
+/* پشتیبانی از حالت تاریک */
+@media (prefers-color-scheme: dark) {
+    .form-input-large {
+        background: #2d3748 !important;
+        border-color: #4a5568 !important;
+        color: white !important;
+    }
+
+    .form-input-large::placeholder {
+        color: #a0aec0 !important;
+    }
+}
+</style>
+
+<script>
+document.getElementById('consultationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const loadingSpinner = submitBtn.querySelector('.btn-loading-spinner');
+    const messageContainer = document.getElementById('messageContainer');
+    const formData = new FormData(this);
+
+    // نمایش حالت لودینگ
+    submitBtn.classList.add('btn-loading');
+    submitBtn.disabled = true;
+    btnText.style.visibility = 'hidden';
+    loadingSpinner.style.display = 'block';
+
+    // پاک کردن پیام قبلی
+    messageContainer.innerHTML = '';
+
+    fetch('{% url "main:consultation_submit" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            showMessage(data.message, 'success');
+            document.getElementById('consultationForm').reset();
+        } else {
+            showMessage(data.message, 'error');
+        }
+    })
+    .catch(error => {
+        showMessage('❌ خطا در ارتباط با سرور. لطفا مجددا تلاش کنید.', 'error');
+    })
+    .finally(() => {
+        // بازگشت به حالت عادی
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+        btnText.style.visibility = 'visible';
+        loadingSpinner.style.display = 'none';
+    });
+});
+
+function showMessage(message, type) {
+    const messageContainer = document.getElementById('messageContainer');
+
+    // حذف پیام‌های قبلی
+    const existingMessages = messageContainer.querySelectorAll('.notification');
+    existingMessages.forEach(msg => {
+        msg.classList.add('hiding');
+        setTimeout(() => msg.remove(), 500);
+    });
+
+    // ایجاد پیام جدید
+    setTimeout(() => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `notification ${type}`;
+        messageDiv.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                ${type === 'success' ? '✅' : '❌'}
+                <span>${message}</span>
+            </div>
+        `;
+        messageContainer.appendChild(messageDiv);
+
+        // حذف خودکار پیام بعد از 4 ثانیه
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.classList.add('hiding');
+                setTimeout(() => messageDiv.remove(), 500);
+            }
+        }, 4000);
+    }, 100);
+}
+
+// بهبود UX برای input
+document.getElementById('mobile').addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11);
+});
+
+document.getElementById('mobile').addEventListener('focus', function() {
+    this.style.fontSize = '18px';
+});
+
+document.getElementById('mobile').addEventListener('blur', function() {
+    if (this.value === '') {
+        this.style.fontSize = '16px';
+    }
+});
+</script>
+
+
+
+                  <section class="contacts-main-wrap section-main">
+                    <div class="container contacts-main">
+                        <div class="col-xl-7 col-md-6 col-sm-12 contacts-main-right">
+                                <div class="row mr-0 pl-lg-10 feature-content d-flex align-items-center flex-column d-lg-block appear-animate rtl text-right fadeIn appear-animation-visible" data-animation-options="{
+                                        'name': 'fadeIn',
+                                        'delay': '.6s'
+                                    }" style="animation-duration: 1.2s;">
+                                <div class="section-title-main">
+                                    <p class="section-subtitle p-relative">
+                                        دفتر وکالت وکیل الرعایا
+                                    </p>
+                                    <div class="section-title-wrap">
+                                        <p class="section-title">
+                                            اطلاعات تماس  <b>دفتر </b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <ul class="feature-list text-grey font-weight-normal pl-0">
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </span>
+                                        <span><strong>آدرس  : </strong>تبریز -  خیابان اذربایجان - نبش چهاراه بهار</span>
+                                    </li>
+
+                                  <li>
+    <span class="feature-list-icon">
+        <i class="fa-solid fa-circle-check"></i>
+    </span>
+    <a href="tel:09148660463">0914-318-1262 <strong>: تلفن پاسخگو</strong></a>
+</li>
+
+
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </span>
+                                        <span><strong>  ساعات حضور در دفتر : </strong>شنبه تا پنج‌شنبه، 5 عصر تا 9 شب</span>
+                                    </li>
+                                </ul>
+                                <div class="social-links social-link-active">
+<a href="https://wa.me/989143181262" class="social-link social-main" title="واتس آپ" target="_blank">
+    <img src="/media/images/whatsapp.png" />
+</a>
+<a href="tel:09143181262" class="social-link social-main" title="تلفن تماس">
+    <i class="fa-light fa-phone"></i>
+</a>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="col-xl-5 col-md-6 col-sm-12 contacts-main-left">
+    <div class="grey-section map-main">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196.26460570904413!2d46.25737868249415!3d38.08822390943803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x401a050a6df6dad5%3A0x1cd79c576f11fd4b!2zRWFzdCBBemVyYmFpamFuIFByb3ZpbmNlLCBUYWJyaXosIFpvbmUgNCBvZiBNdW5pY2lwYWxpdHnYjCDZhdmK2K_Yp9mGINio2YfYp9ixLCBJcmFu!5e0!3m2!1sen!2ssg!4v1764706164651!5m2!1sen!2ssg"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
+
+                    </div>
+                </section>
+
+
+                <section class="feature-section">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row feature-carousel feature-figure" data-animation-options="{
+                                'name': '',
+                                'delay': '.6s'
+                            }" style="animation-duration: 1.2s;">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="450px" viewBox="0 -1 70 72" class="float-svg" data-float-options="{&quot;delta&quot:1,&quotspeed&quot:10,&quotsize&quot:2.2}" xml:space="preserve">
+                                <path fill-rule="evenodd" fill="#f8f8f8" clip-rule="evenodd" d="M49.591,12.717C37.556,8.485,38.429,2.068,27.712,0.635c-7.890,-1.060,-16.577,2.129,-18.961,15.643C6.076,31.445,0.033,38.148,0.000,48.177c-0.033,9.902,3.768,17.989,16.044,20.735c12.288,2.753,18.517,-1.609,27.712,-11.104c9.196,-9.511,19.782,-1.822,24.796,-17.123C72.674,28.096,68.490,19.285,49.591,12.717z">
+                                    </path>
+                                </svg>
+                                <div class="col-xs-12 product-gallery">
+                                    <div class="rotate-slider owl-carousel ltr owl-theme product-single-carousel owl-nav-arrow row gutter-no cols-1"
+                                         data-owl-options="{
+                                        'nav': true,
+                                        'dots': false,
+                                        'loop': true
+                                    }">
+                                        <figure class="product-image">
+                                            <picture>
+                                                <source srcset="/media/images/layyy.jpg" type="image/webp">
+                                                <img src="/media/images/layyy.jpg" loading="lazy" decoding="async" alt="عکس گواهینامه">
+                                            </picture>
+                                        </figure>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-12 col-xs-12 pl-lg-10 mt-10 feature-content d-flex flex-column d-lg-block appear-animate rtl text-right fadeIn appear-animation-visible" data-animation-options="{
+          'name': 'fadeIn',
+          'delay': '.6s'
+      }" style="animation-duration: 1.2s;">
+                                <p class="feature-subtitle text-primary d-inline-block p-relative font-weight-normal">
+                                    پروانه وکالت دفتر وکیل الرعایا
+                                </p>
+                                <p class="feature-title text-primary font-secondary font-weight-normal lh-1">
+                                    وکیل پایه یک دادگستری
+                                </p>
+                                <p>
+                                    پیرامون کلیه امور حقوقی و پرونده های قضایی خدمات ارائه میدهد و برای تعداد زیادی از افراد که در پی بهترین خدمات حقوقی و قضایی می باشند، انتخابی مطمئن و کم هزینه ای به شمار می آید.
+                                </p>
+                                <ul class="feature-list text-grey font-weight-normal pl-0 lh-1">
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i aria-hidden="true" class="fas fa-circle"></i>
+                                        </span>
+                                        <span>سطح وکیل : <b>وکیل پایه یک دادگستری</b>​ </span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i aria-hidden="true" class="fas fa-circle"></i>
+                                        </span>
+                                        <span> تخصص و مهارت : <b>حقوقی، کیفری، ملکی، خانواده، ثبتی، دعاوی اقتصادی</b></span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i aria-hidden="true" class="fas fa-circle"></i>
+                                        </span>
+                                        <span>ارائه خدمات حقوقی : <b>وکالت و مشاوره حقوقی</b> </span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-list-icon">
+                                            <i aria-hidden="true" class="fas fa-circle"></i>
+                                        </span>
+                                        <span> هزینه وکالت : <b>بر اساس سختی و وسعت پرونده تعیین می گردد</b></span>
+                                    </li>
+                                </ul>
+                                <a href="about-us.html" class="btn btn-primary">بیشتر </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+          <section class="section-main">
+    <div class="container rtl">
+        <div class="section-title-main">
+            <p class="section-subtitle p-relative">
+                نظرات
+            </p>
+            <div class="section-title-wrap">
+                <p class="section-title">
+                    وتجربیات   <b>شما </b>
+                </p>
+            </div>
+        </div>
+        <div class="comment-main">
+            <div class="col-md-5 d-xs-show comment-right">
+                <picture>
+                    <source srcset="/media/images/comment.webp" type="image/webp">
+                    <img src="/media/images/comment.jpg" loading="lazy" decoding="async" alt="تجربیات شما" />
+                </picture>
+            </div>
+            <div class="col-md-7 col-xs-12 comment-left">
+                <div class="owl-carousel owl-theme row cols-1" data-owl-options="{
+                'rtl':true,
+                'items': 1,
+                'nav': false,
+                'dots': true,
+                'loop': true,
+                'autoplay': true,
+                'autoplayTimeout': 4000
+            }">
+                    <!-- نظر اول -->
+                    <div class="icon-box icon-box-tiny text-center">
+                        <div class="icon-box-content rtl">
+                            <i class="fa-sharp-duotone fa-solid fa-scale-balanced"></i>
+                            <p>با تشکر از آقای رضا کریمی بابت پیگیری دقیق پرونده ملکی. ایشون با حوصله و دقت بالا تمام مراحل رو پیگیری کردن و در نهایت نتیجه مطلوبی گرفتیم. واقعاً حرفه‌ای و قابل اعتماد هستند.</p>
+                            <div class="vendor-details">
+                                <figure class="vendor-logo">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </figure>
+                                <div class="vendor-personal">
+                                    <p class="vendor-name">
+                                        <a href="#">محمد رضایی</a>
+                                    </p>
+                                    <div class="ratings-container mb-0">
+                                        <span class="icon-box-subject">پرونده ملکی</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نظر دوم -->
+                    <div class="icon-box icon-box-tiny text-center">
+                        <div class="icon-box-content rtl">
+                            <i class="fa-sharp-duotone fa-solid fa-scale-balanced"></i>
+                            <p>قدردانی ویژه از آقای رضا کریمی برای مشاوره حقوقی عالی. توضیحات شفاف و راهنمایی‌های دقیق ایشون کمک بزرگی به حل مشکل تجاری ما کرد. حتماً به دوستانم معرفی خواهم کرد.</p>
+                            <div class="vendor-details">
+                                <figure class="vendor-logo">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </figure>
+                                <div class="vendor-personal">
+                                    <p class="vendor-name">
+                                        <a href="#">فاطمه محمدی</a>
+                                    </p>
+                                    <div class="ratings-container mb-0">
+                                        <span class="icon-box-subject">مشاوره تجاری</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نظر سوم -->
+                    <div class="icon-box icon-box-tiny text-center">
+                        <div class="icon-box-content rtl">
+                            <i class="fa-sharp-duotone fa-solid fa-scale-balanced"></i>
+                            <p>سپاسگزار آقای رضا کریمی بابت پیگیری مستمر پرونده خانوادگی ما. صبر و حوصله ایشون در برخورد با شرایط پیچیده قابل تقدیره. نتیجه کار کاملاً رضایت‌بخش بود.</p>
+                            <div class="vendor-details">
+                                <figure class="vendor-logo">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </figure>
+                                <div class="vendor-personal">
+                                    <p class="vendor-name">
+                                        <a href="#">علی حسینی</a>
+                                    </p>
+                                    <div class="ratings-container mb-0">
+                                        <span class="icon-box-subject">پرونده خانوادگی</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نظر چهارم -->
+                    <div class="icon-box icon-box-tiny text-center">
+                        <div class="icon-box-content rtl">
+                            <i class="fa-sharp-duotone fa-solid fa-scale-balanced"></i>
+                            <p>تشکر ویژه از آقای رضا کریمی بابت دفاع قوی در دادگاه. تسلط کامل بر قوانین و ارائه استدلال‌های محکم باعث موفقیت پرونده ما شد. توصیه می‌کنم به همه.</p>
+                            <div class="vendor-details">
+                                <figure class="vendor-logo">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </figure>
+                                <div class="vendor-personal">
+                                    <p class="vendor-name">
+                                        <a href="#">زهرا امینی</a>
+                                    </p>
+                                    <div class="ratings-container mb-0">
+                                        <span class="icon-box-subject">دفاع در دادگاه</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نظر پنجم -->
+                    <div class="icon-box icon-box-tiny text-center">
+                        <div class="icon-box-content rtl">
+                            <i class="fa-sharp-duotone fa-solid fa-scale-balanced"></i>
+                            <p>ممنون از آقای کریمی بابت مشاوره تخصصی در زمینه قراردادها. با راهنمایی ایشون از بروز مشکلات آینده جلوگیری کردیم. حرفه‌ای و دلسوز هستند.</p>
+                            <div class="vendor-details">
+                                <figure class="vendor-logo">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </figure>
+                                <div class="vendor-personal">
+                                    <p class="vendor-name">
+                                        <a href="#">سارا نوروزی</a>
+                                    </p>
+                                    <div class="ratings-container mb-0">
+                                        <span class="icon-box-subject">مشاوره قراردادها</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.vendor-logo {
+    margin: 0;
+    padding: 0;
+}
+
+.vendor-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.vendor-personal {
+    text-align: right;
+}
+
+.vendor-name {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.vendor-name a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.vendor-name a:hover {
+    color: #d4af37;
+}
+
+.icon-box-subject {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+.icon-box-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-color: #d4af37;
+}
+
+.icon-box-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+    font-weight: 400;
+}
+
+.fa-scale-balanced {
+    color: #d4af37;
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* استایل‌های اسلایدر */
+.owl-theme .owl-dots .owl-dot span {
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background: #ddd;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+    background: #d4af37;
+    width: 30px;
+    border-radius: 10px;
+}
+
+.owl-theme .owl-dots .owl-dot:hover span {
+    background: #d4af37;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .comment-main {
+        flex-direction: column;
+    }
+
+    .comment-right, .comment-left {
+        width: 100% !important;
+    }
+
+    .comment-right {
+        margin-bottom: 30px;
+    }
+
+    .icon-box-content {
+        padding: 20px;
+    }
+
+    .vendor-details {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .vendor-personal {
+        text-align: center;
+    }
+}
+
+/* انیمیشن‌های اسلایدر */
+.owl-item {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.owl-item.active {
+    opacity: 1;
+}
+</style>
+
+             {% render_partial 'blog:main' %}
+            </div>
+        </main>
+        <!--End.main-->
+
+        <button class="chat-button" onclick="toggleChat()"><i class="fa-regular fa-message-dots"></i></button>
+
+    </div>
+
+</body>
+</html>
+
+
+{% endblock content %}

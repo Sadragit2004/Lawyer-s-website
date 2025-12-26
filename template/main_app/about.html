@@ -1,0 +1,40 @@
+{% extends "main_template.html" %}
+
+
+
+{% block content %}
+
+<section class="section-main about-simple rtl text-right">
+    <div class="container">
+
+        <!-- تصویر بالا -->
+        <div class="text-center mb-4">
+            <picture>
+                <source style='width: 300px;' srcset="/media/images/about.jpg" type="image/webp">
+                <img style='width: 300px;' src="/media/images/about.jpg"
+                     alt="رضا کریمی وکیل پایه یک دادگستری"
+                     class="img-fluid banner-radius"
+                     loading="lazy" decoding="async"
+                     width="650" height="420">
+            </picture>
+        </div>
+
+        <!-- متن معرفی -->
+        <div class="text-center">
+            <h2 class="mb-3">درباره رضا کریمی</h2>
+
+            <p class="section-desc max-w-3xl mx-auto">
+                من، رضا کریمی، وکیل پایه یک دادگستری هستم و سال‌هاست در زمینه‌های مختلف حقوقی
+                از جمله حقوق کیفری، حقوق خانواده، حقوق قراردادها و دعاوی ملکی فعالیت می‌کنم.
+                هدف من ارائه مشاوره دقیق، پیگیری حرفه‌ای و دفاع قاطع از حقوق موکلان است.
+                باور دارم که هر پرونده نیازمند توجه ویژه، تحلیل دقیق و راهکار قانونی درست است؛
+                و در تمام مراحل کنار شما هستم تا بهترین نتیجه ممکن حاصل شود.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+
+{% endblock content %}

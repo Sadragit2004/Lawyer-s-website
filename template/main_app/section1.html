@@ -1,0 +1,24 @@
+
+
+<section class="section-slider">
+    {% for content in contents %}
+    <div class="container section-slider-wrap">
+        <div class="col-sm-6 col-xs-12 slider-img">
+            <figure>
+                <a href="#">
+                    <picture>
+                        <source srcset="{{ content.image.url }}" type="image/webp">
+                        <img style='width: 500px; border-radius: 20px;' src="{{ content.image.url }}" class="product-hover-image" loading="lazy" decoding="async" alt="{{ content.title }}">
+                        <br>
+                    </picture>
+                </a>
+            </figure>
+        </div>
+        <div class="col-sm-6 col-xs-12 slider-info">
+            <h1>{{ content.title|safe }}</h1>
+            <span>{{ content.description|truncatewords:20 }}</span>
+            <p style='font-size:40px; font-weight:600;'>0914-318-1262</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
