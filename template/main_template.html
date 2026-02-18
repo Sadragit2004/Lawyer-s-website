@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-     <link rel="apple-touch-icon" sizes="512x512" href="/media/images/logo.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/media/images/logo.png">
 
     <!-- آیکون‌های Favicon برای مرورگرها -->
     <link rel="icon" type="image/png" sizes="32x32" href="/media/images/logo.png">
@@ -14,32 +14,38 @@
     <link rel="shortcut icon" href="/media/images/logo.png">
 
     {% block meta1 %}
-
     {% endblock meta1 %}
 
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'fonts/awesome/css/custom.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/vazir/font-vazir-custom.css' %}">
+
+    <!-- فونت وزیر از CDN (نسخه فارسی) -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" type="text/css" href="{% static 'plugin-js/owl-carousel/owl.carousel.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main-min.css' %}">
+
+    <style>
+        /* اعمال فونت وزیر به کل صفحه */
+        body, * {
+            font-family: 'Vazirmatn', sans-serif !important;
+        }
+
+        /* تنظیم جهت برای متون فارسی */
+        body {
+            direction: rtl;
+            text-align: right;
+        }
+    </style>
 
 </head>
 <body class="" id="">
  <div class="page-wrapper">
     {% include "partials/header.html" %}
 
-
-
     {% block content %}
-
     {% endblock content %}
 
-
-
     {% include "partials/footer.html" %}
-
-
-
 
     {% include "partials/script.html" %}
 </div>
